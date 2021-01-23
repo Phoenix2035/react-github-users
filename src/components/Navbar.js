@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
+import {useSelector} from "react-redux";
+import mockUser from "../mockData.js/mockUser";
 
 const Navbar = () => {
-  return <h2>navbar component</h2>;
+  return (
+      <div>Navbar</div>
+  )
 };
 
 const Wrapper = styled.nav`

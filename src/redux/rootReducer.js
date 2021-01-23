@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-// import postsReducer from './Blog/Posts/Posts.reducer';
+import mockDataReducer from "./MockData/User.reducer";
 
 
 export default combineReducers({
-    // posts: postsReducer
-    
+     mocks: mockDataReducer
+
 })
