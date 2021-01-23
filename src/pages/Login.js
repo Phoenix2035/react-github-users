@@ -2,9 +2,7 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import loginImg from '../images/login-img.svg';
-const Login = () => {
-  return <h2>login page</h2>;
-};
+
 const Wrapper = styled.section`
   min-height: 100vh;
   display: grid;
@@ -21,4 +19,17 @@ const Wrapper = styled.section`
     margin-bottom: 1.5rem;
   }
 `;
+
+const Login = () => {
+  return (
+    <Wrapper>
+      <div className="container">
+        <img src={loginImg} alt="login" />
+        <h1>github user</h1>
+        <button className="btn">login</button>
+      </div>
+    </Wrapper>
+  )
+};
+
 export default Login;
