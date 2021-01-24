@@ -1,8 +1,10 @@
 import React from 'react';
+import { useSelector } from "react-redux"; 
 import styled from 'styled-components';
 import { ExampleChart, Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
 const Repos = () => {
-  return <h2>repos component</h2>;
+  const repos = useSelector(state => state.mocks.mockRepos)
+  return (<ExampleChart/>)
 };
 
 const Wrapper = styled.div`
