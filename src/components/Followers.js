@@ -1,8 +1,27 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import styled from 'styled-components';
 
 const Followers = () => {
-  return <h2>followers component</h2>;
+  const followers = useSelector(state => state.mocks.mockFollowers)
+  return (
+    <Wrapper>
+      <div className="followers">
+        {
+          followers.map((item, index) =>
+            <article key={index}>
+              <img src={item.avatar_url} alt={item.login} />
+              <div>
+                <h4>{item.login}</h4>
+                <a href={item.html_url}>{item.html_url}</a>
+              </div>
+            </article>
+
+          )
+        }
+      </div>
+    </Wrapper>
+  )
 };
 
 const Wrapper = styled.article`
@@ -28,7 +47,7 @@ const Wrapper = styled.article`
     font-size: 1rem;
   }
   .followers {
-    overflow: scroll;
+    overflow-y: scroll;
     height: 260px;
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(45px, 1fr));
