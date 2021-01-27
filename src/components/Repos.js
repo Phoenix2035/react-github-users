@@ -7,19 +7,31 @@ const Repos = () => {
     const repos = useSelector(state => state.mocks.mockRepos)
 
     let languages = repos.reduce((total, item) => {
-        const {language} = item
+        const {language, stargazers_count} = item
         if (!language) return total
         if (!total[language]) {
-            total[language] = {label: language, value: 1}
+            total[language] = {label: language, value: 1, stars: stargazers_count}
         } else {
-            total[language] = {...total[language], value: total[language].value + 1}
+            total[language] = {
+                ...total[language],
+                value: total[language].value + 1,
+                stars: total[language].stars + stargazers_count
+            }
         }
         return total
     }, {})
 
-    languages = Object.values(languages).sort((a, b) => b.value - a.value).slice(0, 5)
+    const mostUsed = Object.values(languages)
+        .sort((a, b) => b.value - a.value).slice(0, 5)
 
-    console.log(languages)
+// most stars per languages
+    const mostPopular = Object.values(languages)
+        .sort((a, b) => b.stars - a.stars)
+        .map(item => {
+                return {...item, value: item.stars}
+            }
+        ).slice(0, 5)
+
     const chartData = [
         {
             label: "Html",
@@ -37,8 +49,9 @@ const Repos = () => {
     return (
         <section className="section">
             <Wrapper className="section-center">
-                {/*<ExampleChart data={chartData}/>*/}
-                <Pie3D data={languages}/>
+                <Pie3D data={mostUsed}/>
+                <div></div>
+                <Doughnut2D data={mostPopular}/>
             </Wrapper>
         </section>
     )
