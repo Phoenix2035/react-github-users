@@ -34,7 +34,6 @@ const Repos = () => {
 
 // stars, forks
     let {stars, forks} = repos.reduce((total, item) => {
-
         const {stargazers_count, name, forks} = item
         total.stars[stargazers_count] = {label: name, value: stargazers_count}
         total.forks[forks] = {label: name, value: forks}
@@ -44,24 +43,10 @@ const Repos = () => {
     })
 
 
-    stars = Object.values(stars).slice(-5).reverse()
+    stars = Object.values(stars).slice(-5).reverse() // change object to array
     forks = Object.values(forks).slice(-5).reverse()
 
 
-    const chartData = [
-        {
-            label: "Html",
-            value: "13"
-        },
-        {
-            label: "CSS",
-            value: "23"
-        },
-        {
-            label: "JAVASCRIPT",
-            value: "80"
-        }
-    ];
     return (
         <section className="section">
             <Wrapper className="section-center">
