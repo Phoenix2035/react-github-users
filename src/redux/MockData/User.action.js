@@ -14,3 +14,10 @@ export const checkRequestSuccess = (data) => {
         payload: data
     }
 };
+
+export const checkError = (show = false, msg) => {
+    return {
+        type: types.GET_ERROR,
+        payload: {show, msg}
+    }
+};

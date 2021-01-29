@@ -6,7 +6,7 @@ import mockUser from "../mockData.js/mockUser";
 
 const Navbar = () => {
   return (
-      <div>Navbar</div>
+      <Wrapper>Navbar</Wrapper>
   )
 };
 
