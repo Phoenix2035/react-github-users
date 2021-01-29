@@ -1,10 +1,20 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import {MdSearch} from 'react-icons/md';
+import {useDispatch, useSelector} from "react-redux";
+import {checkRequest} from "../redux/MockData/User.thunk";
 
 const Search = () => {
     const searchInputRef = useRef()
     const [user, setUser] = useState("")
+
+    const dispatch = useDispatch()
+
+    const request = useSelector(state => state.mocks.request)
+
+    useEffect(() => {
+        dispatch(checkRequest())
+    }, [])
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -27,10 +37,10 @@ const Search = () => {
                             onChange={e => setUser(e.target.value)}
                             ref={searchInputRef}
                             placeholder="enter github user"/>
-                        <button type="submit">search</button>
+                        {request > 0 && <button type="submit">search</button>}
                     </div>
                 </form>
-                <h3>requests: 60 / 60</h3>
+                <h3>requests: {request} / 60</h3>
             </Wrapper>
         </section>
 
