@@ -1,10 +1,10 @@
 import types from './User.types';
 
 
-export const searchUserSuccess = (data) => {
+export const searchGithubUserSuccess = (user) => {
     return {
         type: types.SEARCH_USER,
-        payload: data
+        payload: user
     }
 };
 
@@ -15,9 +15,9 @@ export const checkRequestSuccess = (data) => {
     }
 };
 
-export const checkError = (show = false, msg) => {
+export const checkError = (show = false, msg = "") => {
     return {
         type: types.GET_ERROR,
-        payload: {show, msg}
+        payload: { show, msg }
     }
 };
