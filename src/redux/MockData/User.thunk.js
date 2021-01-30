@@ -1,4 +1,4 @@
-import { searchGithubUserSuccess, checkRequestSuccess, checkError } from './User.action'
+import { searchGithubUserSuccess, checkRequestSuccess, checkError, isLoading } from './User.action'
 import axios from "axios"
 
 const rootUrl = 'https://api.github.com'
@@ -26,6 +26,7 @@ export const searchGithubUser = user => async dispatch => {
     } else {
         dispatch(checkError(true, "there is no user with that username"))
     }
+    dispatch(checkRequestSuccess())
 };
 
 

@@ -13,6 +13,7 @@ const Search = () => {
   const request = useSelector(state => state.mocks.request)
   const error = useSelector(state => state.mocks.error)
   const userSearch = useSelector(state => state.mocks.userSearch)
+  const loading = useSelector(state => state.mocks.loading)
 
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const Search = () => {
               onChange={e => setUser(e.target.value)}
               ref={searchInputRef}
               placeholder="enter github user" />
-            {request > 0 && <button type="submit">search</button>}
+            {request > 0 && !loading && <button type="submit">search</button>}
           </div>
         </form>
         <h3>requests: {request} / 60</h3>

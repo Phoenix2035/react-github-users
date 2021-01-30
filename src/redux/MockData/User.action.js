@@ -21,3 +21,4 @@ export const checkError = (show = false, msg = "") => {
         payload: { show, msg }
     }
 };
+
