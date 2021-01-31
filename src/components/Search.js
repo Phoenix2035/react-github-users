@@ -1,64 +1,63 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
-import { MdSearch } from 'react-icons/md';
-import { useDispatch, useSelector } from "react-redux";
-import { checkRequest, searchGithubUser } from "../redux/MockData/User.thunk";
+import {MdSearch} from 'react-icons/md';
+import {useDispatch, useSelector} from "react-redux";
+import {checkRequest, searchGithubUser} from "../redux/MockData/User.thunk";
 
 const Search = () => {
-  const searchInputRef = useRef()
-  const [user, setUser] = useState("")
+    const searchInputRef = useRef()
+    const [user, setUser] = useState("")
 
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-  const request = useSelector(state => state.mocks.request)
-  const error = useSelector(state => state.mocks.error)
-  const userSearch = useSelector(state => state.mocks.userSearch)
-  const loading = useSelector(state => state.mocks.loading)
+    const request = useSelector(state => state.mocks.request)
+    const error = useSelector(state => state.mocks.error)
+    const loading = useSelector(state => state.mocks.loading)
 
 
-  useEffect(() => {
-    dispatch(checkRequest())
-  }, [])
+    useEffect(() => {
+        dispatch(checkRequest())
+    }, [])
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    if (user) {
-      dispatch(searchGithubUser(user))
-      searchInputRef.current.focus()
-      setUser('')
-    }
-  }
-
-  return (
-    <section className="section">
-      <Wrapper className="section-center">
-        {
-          error.show &&
-          <ErrorWrapper>
-            <p>
-              {
-                error.msg
-              }
-            </p>
-          </ErrorWrapper>
+    const handleSubmit = e => {
+        e.preventDefault()
+        if (user) {
+            dispatch(searchGithubUser(user))
+            searchInputRef.current.focus()
+            setUser('')
         }
-        <form onSubmit={handleSubmit}>
-          <div className="form-control">
-            <MdSearch />
-            <input
-              type="text"
-              value={user}
-              onChange={e => setUser(e.target.value)}
-              ref={searchInputRef}
-              placeholder="enter github user" />
-            {request > 0 && !loading && <button type="submit">search</button>}
-          </div>
-        </form>
-        <h3>requests: {request} / 60</h3>
-      </Wrapper>
-    </section>
+    }
 
-  )
+    return (
+        <section className="section">
+            <Wrapper className="section-center">
+                {
+                    error.show &&
+                    <ErrorWrapper>
+                        <p>
+                            {
+                                error.msg
+                            }
+                        </p>
+                    </ErrorWrapper>
+                }
+                <form onSubmit={handleSubmit}>
+                    <div className="form-control">
+                        <MdSearch/>
+                        <input
+                            type="text"
+                            value={user}
+                            onChange={e => setUser(e.target.value)}
+                            ref={searchInputRef}
+                            placeholder="enter github user"/>
+                        {request > 0 && !loading && <button type="submit">search</button>}
+                    </div>
+                </form>
+                <h3>requests: {request} / 60</h3>
+            </Wrapper>
+        </section>
+
+    )
 };
 
 const Wrapper = styled.div`

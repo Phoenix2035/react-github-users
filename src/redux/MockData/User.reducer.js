@@ -20,14 +20,14 @@ const initial_state = {
 };
 
 
-const mockDataReducer = (state = initial_state, { type, payload }) => {
+const mockDataReducer = (state = initial_state, {type, payload}) => {
     switch (type) {
         case types.CHECK_REQUEST:
-            return { ...state, request: payload,loading: false }
+            return {...state, request: payload, loading: false}
         case types.SEARCH_USER:
-            return { ...state, userSearch: payload,loading: false }
+            return {...state, userSearch: payload, loading: false}
         case types.GET_ERROR:
-            return { ...state, error: { show: payload.show, msg: payload.msg } }
+            return {...state, error: {show: payload.show, msg: payload.msg}}
 
         default:
             return state;

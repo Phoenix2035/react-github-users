@@ -1,4 +1,4 @@
-import { searchGithubUserSuccess, checkRequestSuccess, checkError, isLoading } from './User.action'
+import {searchGithubUserSuccess, checkRequestSuccess, checkError, isLoading} from './User.action'
 import axios from "axios"
 
 const rootUrl = 'https://api.github.com'
@@ -6,8 +6,8 @@ const rootUrl = 'https://api.github.com'
 
 export const checkRequest = () => dispatch => {
     axios.get(`${rootUrl}/rate_limit`)
-        .then(({ data }) => {
-            let { rate: { remaining } } = data
+        .then(({data}) => {
+            let {rate: {remaining}} = data
             if (remaining === 0) {
                 dispatch(checkError(true, "sorry, you have exceeded your hourly rate limit!"))
             }
@@ -26,7 +26,7 @@ export const searchGithubUser = user => async dispatch => {
     } else {
         dispatch(checkError(true, "there is no user with that username"))
     }
-    dispatch(checkRequestSuccess())
+    dispatch(checkRequest())
 };
 
 
