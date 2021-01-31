@@ -1,4 +1,4 @@
-import {searchGithubUserSuccess, checkRequestSuccess, checkError, isLoading} from './User.action'
+import {searchGithubUserSuccess, checkRequestSuccess, checkError} from './User.action'
 import axios from "axios"
 
 const rootUrl = 'https://api.github.com'
@@ -23,6 +23,13 @@ export const searchGithubUser = user => async dispatch => {
         .catch(err => console.log(err))
     if (res) {
         dispatch(searchGithubUserSuccess(res.data))
+        const {login, followers_url} = res.data
+        // Repos
+        axios.get(`${rootUrl}/users/${login}/repos?per_page=100`)
+            .then(res => console.log(res))
+        // Followers
+        axios.get(`${followers_url}?per_page=100`)
+            .then(res => console.log(res))
     } else {
         dispatch(checkError(true, "there is no user with that username"))
     }
