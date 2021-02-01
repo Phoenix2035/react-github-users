@@ -5,7 +5,7 @@ import { GoRepo, GoGist } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi';
 
 const UserInfo = () => {
-  const githubUser = useSelector(state => state.mocks.mockUser)
+  const githubUser = useSelector(state => state.mocks.user)
   const { public_repos, followers, following, public_gists } = githubUser
 
   const items = [

@@ -1,27 +1,27 @@
 import React from 'react';
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import styled from 'styled-components';
 
 const Followers = () => {
-  const followers = useSelector(state => state.mocks.mockFollowers)
-  return (
-    <Wrapper>
-      <div className="followers">
-        {
-          followers.map((item, index) =>
-            <article key={index}>
-              <img src={item.avatar_url} alt={item.login} />
-              <div>
-                <h4>{item.login}</h4>
-                <a href={item.html_url}>{item.html_url}</a>
-              </div>
-            </article>
-
-          )
-        }
-      </div>
-    </Wrapper>
-  )
+    const followers = useSelector(state => state.mocks.followers)
+    console.log(followers)
+    return (
+        <Wrapper>
+            <div className="followers">
+                {
+                    followers.map((item, index) =>
+                        <article key={index}>
+                            <img src={item.avatar_url} alt={item.login}/>
+                            <div>
+                                <h4>{item.login}</h4>
+                                <a href={item.html_url}>{item.html_url}</a>
+                            </div>
+                        </article>
+                    )
+                }
+            </div>
+        </Wrapper>
+    )
 };
 
 const Wrapper = styled.article`
@@ -46,6 +46,7 @@ const Wrapper = styled.article`
     letter-spacing: var(--spacing);
     font-size: 1rem;
   }
+
   .followers {
     overflow-y: scroll;
     height: 260px;
@@ -54,6 +55,7 @@ const Wrapper = styled.article`
     gap: 1.25rem 1rem;
     padding: 1rem 2rem;
   }
+
   article {
     transition: var(--transition);
     padding: 0.15rem 0.5rem;
@@ -62,15 +64,18 @@ const Wrapper = styled.article`
     grid-template-columns: auto 1fr;
     align-items: center;
     column-gap: 1rem;
+
     img {
       height: 100%;
       width: 45px;
       border-radius: 50%;
       object-fit: cover;
     }
+
     h4 {
       margin-bottom: 0;
     }
+
     a {
       color: var(--clr-grey-5);
     }

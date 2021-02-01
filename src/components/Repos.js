@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {Pie3D, Column3D, Bar3D, Doughnut2D} from './Charts';
 
 const Repos = () => {
-    const repos = useSelector(state => state.mocks.mockRepos)
+    const repos = useSelector(state => state.mocks.repos)
 
     let languages = repos.reduce((total, item) => {
         const {language, stargazers_count} = item
