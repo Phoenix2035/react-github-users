@@ -23,13 +23,6 @@ export const followersSuccess = (follower) => {
 };
 
 
-export const searchGithubUserSuccess = (user) => {
-    return {
-        type: types.SEARCH_USER,
-        payload: user
-    }
-};
-
 
 export const checkRequestSuccess = (data) => {
     return {

@@ -16,7 +16,6 @@ const initial_state = {
         show: false,
         msg: ''
     },
-    userSearch: {}
 };
 
 
@@ -30,8 +29,6 @@ const mockDataReducer = (state = initial_state, {type, payload}) => {
             return {...state, followers: payload}
         case types.CHECK_REQUEST:
             return {...state, request: payload, loading: false}
-        case types.SEARCH_USER:
-            return {...state, userSearch: payload, loading: false}
         case types.GET_ERROR:
             return {...state, error: {show: payload.show, msg: payload.msg}}
         default:

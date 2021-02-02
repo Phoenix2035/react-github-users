@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Followers = () => {
     const followers = useSelector(state => state.mocks.followers)
-    console.log(followers)
+
     return (
         <Wrapper>
             <div className="followers">

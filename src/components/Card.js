@@ -6,6 +6,7 @@ import {MdBusiness, MdLocationOn, MdLink} from 'react-icons/md';
 const Card = () => {
     const githubUser = useSelector(state => state.mocks.user)
     const {avatar_url, html_url, name, company, bio, location, twitter_username} = githubUser
+
     return (
         <Wrapper>
             <header>

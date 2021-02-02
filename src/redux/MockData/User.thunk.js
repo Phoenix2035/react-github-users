@@ -1,5 +1,4 @@
 import {
-    searchGithubUserSuccess,
     checkRequestSuccess,
     checkError,
     userSuccess,
@@ -29,7 +28,7 @@ export const searchGithubUser = user => async dispatch => {
     const res = await axios.get(`${rootUrl}/users/${user}`)
         .catch(err => console.log(err))
     if (res) {
-        dispatch(searchGithubUserSuccess(res.data))
+        dispatch(userSuccess(res.data))
         const {login, followers_url} = res.data
         // Repos
         axios.get(`${rootUrl}/users/${login}/repos?per_page=100`)
