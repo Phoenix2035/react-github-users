@@ -29,6 +29,8 @@ const mockDataReducer = (state = initial_state, {type, payload}) => {
             return {...state, followers: payload}
         case types.CHECK_REQUEST:
             return {...state, request: payload, loading: false}
+        case types.LOADING:
+            return {...state, loading: payload}
         case types.GET_ERROR:
             return {...state, error: {show: payload.show, msg: payload.msg}}
         default:

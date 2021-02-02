@@ -31,6 +31,13 @@ export const checkRequestSuccess = (data) => {
     }
 };
 
+export const isLoading = (load) => {
+    return {
+        type: types.LOADING,
+        payload: load
+    }
+};
+
 export const checkError = (show = false, msg = "") => {
     return {
         type: types.GET_ERROR,

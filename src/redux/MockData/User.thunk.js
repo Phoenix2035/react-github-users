@@ -3,7 +3,8 @@ import {
     checkError,
     userSuccess,
     reposSuccess,
-    followersSuccess
+    followersSuccess,
+    isLoading
 } from './User.action'
 import axios from "axios"
 
@@ -25,21 +26,32 @@ export const checkRequest = () => dispatch => {
 
 export const searchGithubUser = user => async dispatch => {
     dispatch(checkError())
+    dispatch(isLoading(true))
     const res = await axios.get(`${rootUrl}/users/${user}`)
         .catch(err => console.log(err))
     if (res) {
         dispatch(userSuccess(res.data))
         const {login, followers_url} = res.data
-        // Repos
-        axios.get(`${rootUrl}/users/${login}/repos?per_page=100`)
-            .then(res => dispatch(reposSuccess(res.data)))
-        // Followers
-        axios.get(`${followers_url}?per_page=100`)
-            .then(res => dispatch(followersSuccess(res.data)))
+
+        await Promise.allSettled([
+            axios.get(`${rootUrl}/users/${login}/repos?per_page=100`),
+            axios.get(`${followers_url}?per_page=100`)
+        ]).then((results) => {
+            const [repos, followers] = results
+            if (repos.status === "fulfilled") {
+                dispatch(reposSuccess(repos.value.data))
+            }
+
+            if (followers.status === "fulfilled") {
+                dispatch(followersSuccess(followers.value.data))
+            }
+        })
+
     } else {
         dispatch(checkError(true, "there is no user with that username"))
     }
     dispatch(checkRequest())
+    dispatch(isLoading(false))
 };
 
 
