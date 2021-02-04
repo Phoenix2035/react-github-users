@@ -9,9 +9,17 @@ import {
     Auth0Provider
 } from '@auth0/auth0-react';
 
+
 ReactDOM.render(
-    <Provider store={store}>
-        <App/>
-    </Provider>,
+    <Auth0Provider
+        domain="dev-cs97bp4p.us.auth0.com"
+        clientId="HPltZFhTbenFDw5oKJr5PoQaIO8pKUlX"
+        redirectUri={window.location.origin}
+        cacheLocation={"localstorage"}
+    >
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </Auth0Provider>,
     document.getElementById('root')
 );
