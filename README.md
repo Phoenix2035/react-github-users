@@ -1,4 +1,4 @@
-##do you want to see my app? click <a href="https://react-github-users-ochre.vercel.app/">Me</a>
+## do you want to see my app? click <a href="https://react-github-users-ochre.vercel.app/">Me</a>
 
 
 ## Starter Project
