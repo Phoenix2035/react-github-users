@@ -1,9 +1,27 @@
 import React from 'react';
-import { GithubContext } from '../context/context';
+import {useSelector} from "react-redux";
 import styled from 'styled-components';
 
 const Followers = () => {
-  return <h2>followers component</h2>;
+    const followers = useSelector(state => state.mocks.followers)
+
+    return (
+        <Wrapper>
+            <div className="followers">
+                {
+                    followers.map((item, index) =>
+                        <article key={index}>
+                            <img src={item.avatar_url} alt={item.login}/>
+                            <div>
+                                <h4>{item.login}</h4>
+                                <a href={item.html_url}>{item.html_url}</a>
+                            </div>
+                        </article>
+                    )
+                }
+            </div>
+        </Wrapper>
+    )
 };
 
 const Wrapper = styled.article`
@@ -28,14 +46,16 @@ const Wrapper = styled.article`
     letter-spacing: var(--spacing);
     font-size: 1rem;
   }
+
   .followers {
-    overflow: scroll;
+    overflow-y: scroll;
     height: 260px;
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(45px, 1fr));
     gap: 1.25rem 1rem;
     padding: 1rem 2rem;
   }
+
   article {
     transition: var(--transition);
     padding: 0.15rem 0.5rem;
@@ -44,15 +64,18 @@ const Wrapper = styled.article`
     grid-template-columns: auto 1fr;
     align-items: center;
     column-gap: 1rem;
+
     img {
       height: 100%;
       width: 45px;
       border-radius: 50%;
       object-fit: cover;
     }
+
     h4 {
       margin-bottom: 0;
     }
+
     a {
       color: var(--clr-grey-5);
     }

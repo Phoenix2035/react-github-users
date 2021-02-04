@@ -1,7 +1,41 @@
-import React from 'react';
+// STEP 1 - Include Dependencies
+// Include react
+import React from "react";
 
-const Doughnut2d = () => {
-  return <div>chart</div>;
-};
+// Include the react-fusioncharts component
+import ReactFC from "react-fusioncharts";
+
+// Include the fusioncharts library
+import FusionCharts from "fusioncharts";
+
+// Include the chart type
+import Chart from "fusioncharts/fusioncharts.charts";
+
+// Include the theme as fusion
+import FusionTheme from "fusioncharts/themes/fusioncharts.theme.candy";
+
+// Adding the chart and theme as dependency to the core fusioncharts
+ReactFC.fcRoot(FusionCharts, Chart, FusionTheme);
+
+
+function Doughnut2d({data}) {
+    const chartConfigs = {
+        type: "doughnut2D",
+        width: "100%",
+        height: "400",
+        dataFormat: "json",
+        dataSource: {
+            chart: {
+                caption: "Stars Per Language",
+                decimals: 0,
+                doughnutRadius: "45%",
+                showPercentValues: 0,
+                theme:"candy"
+            },
+            data: data
+        }
+    };
+    return (<ReactFC {...chartConfigs} />);
+}
 
 export default Doughnut2d;
